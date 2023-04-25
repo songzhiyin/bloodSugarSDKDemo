@@ -56,9 +56,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * SDK鉴权认证，
+     */
     private fun authentication() {
-        val key = "sQSyK6KTEuV1EoKZ34s6Q4222K6440S4"
-        CgmCareManage.getInstance().authentication(key, object : DeviceAuthenticationListener {
+        val secret = "sQSyK6KTEuV1EoKZ34s6Q4222K6440S4"
+        CgmCareManage.getInstance().authentication(secret, object : DeviceAuthenticationListener {
             override fun onSuccess() {
                 showToast("SDK鉴权成功")
             }
