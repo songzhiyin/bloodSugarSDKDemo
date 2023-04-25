@@ -1,0 +1,38 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+
+//        *********************    糖动SDK集成  *******************
+
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            credentials {
+                username '644743f5840f2501c4ff47d3'
+                password 'iYSfTLX3ivhB'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2369369-release-3RKhpV/'
+        }
+        maven {
+            credentials {
+                username '644743f5840f2501c4ff47d3'
+                password 'iYSfTLX3ivhB'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2369369-snapshot-xBNR34/'
+        }
+        //        *********************    糖动SDK集成  *******************
+    }
+}
+rootProject.name = "bloodSugarSDKDemo"
+include ':app'
