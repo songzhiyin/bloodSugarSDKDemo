@@ -18,12 +18,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mContext = this;
+        mContext = this
+        initListener()
         //初始化SDK
         CgmCareManage.getInstance().initApplication(application)
         //打印debug日志
         CgmCareManage.getInstance().setPrintDebugLog(true)
+        authentication()//SDK鉴权
 
+    }
+
+    private fun initListener() {
         findViewById<Button>(R.id.tvAuthentication).setOnClickListener(onClickListener)
         findViewById<Button>(R.id.tvNFCCardReader).setOnClickListener(onClickListener)
         findViewById<Button>(R.id.tvNFCIntent).setOnClickListener(onClickListener)
@@ -37,18 +42,23 @@ class MainActivity : AppCompatActivity() {
             R.id.tvAuthentication -> {
                 authentication()
             }
+
             R.id.tvNFCCardReader -> {//NFC-读卡器模式
                 startActivity(Intent(mContext, NfcCardReadActivity::class.java))
             }
+
             R.id.tvNFCIntent -> {//NFC-前台调度模式
                 startActivity(Intent(mContext, NfcIntentActivity::class.java))
             }
+
             R.id.tvNFCActivation -> {//NFC-瞬感探头激活
                 startActivity(Intent(mContext, NfcActivationActivity::class.java))
             }
+
             R.id.tvScan -> {//糖动发射器蓝牙扫描
                 startActivity(Intent(mContext, BluetoothScanActivity::class.java))
             }
+
             R.id.tvReconnect -> {//糖动发射器蓝牙重连
                 startActivity(Intent(mContext, BluetoothReconnectActivity::class.java))
             }
