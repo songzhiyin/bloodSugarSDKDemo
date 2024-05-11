@@ -31,7 +31,7 @@ allprojects {
 在你的build.gradle文件中加入你要引用的文件信息。
 
 dependencies {
-  implementation 'com.cgmcare.sdk:bloodSugar:2.0.8'
+  implementation 'com.cgmcare.sdk:bloodSugar:2.0.9'
 }
 
 
