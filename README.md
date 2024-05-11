@@ -134,14 +134,14 @@ android:name="android.permission.ACCESS_COARSE_LOCATION
     @Override
     protected void onResume() {
         message.delete(0, message.length());
-        //开启NFC扫描监听
+        //开启NFC扫描监听，必须在onResume生命周期方法中调用
         CgmCareManage.getInstance().onEnableNFC();
         super.onResume();
     }
     
     @Override
     protected void onPause() {
-        //取消NFC扫描监听
+        //取消NFC扫描监听，必须在onPause生命周期方法中调用
         CgmCareManage.getInstance().onDisableNFC();
         super.onPause();
     }
@@ -201,7 +201,7 @@ android:name="android.permission.ACCESS_COARSE_LOCATION
     @Override
     protected void onResume() {
         super.onResume();
-        //开启扫描
+        //开启扫描，必须在onResume生命周期方法中调用
         CgmCareManage.getInstance().onEnableNFC();
     }
     
@@ -209,14 +209,14 @@ android:name="android.permission.ACCESS_COARSE_LOCATION
     @Override
     protected void onPause() {
         super.onPause();
-        //结束扫描
+        //结束扫描，必须在onPause生命周期方法中调用
         CgmCareManage.getInstance().onDisableNFC();
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        //前台调度模式必须方法
+        //前台调度模式必须方法，必须在必须在onNewIntent方法中调用
         CgmCareManage.getInstance().nfcToOnNewIntent(intent);
     }
 

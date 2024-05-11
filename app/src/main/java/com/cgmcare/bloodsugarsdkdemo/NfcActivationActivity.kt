@@ -61,13 +61,13 @@ class NfcActivationActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        //开启扫描
+        //开启扫描，必须在onResume生命周期方法中调用
         CgmCareManage.getInstance().onEnableNFC()
     }
 
     override fun onPause() {
         super.onPause()
-        //结束扫描
+        //结束扫描，必须在onPause生命周期方法中调用
         CgmCareManage.getInstance().onDisableNFC()
     }
 

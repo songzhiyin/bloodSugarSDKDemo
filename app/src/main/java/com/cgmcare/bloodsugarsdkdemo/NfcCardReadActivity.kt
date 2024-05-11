@@ -34,13 +34,13 @@ class NfcCardReadActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        //开启NFC扫描
+        //开启扫描，必须在onResume生命周期方法中调用
         CgmCareManage.getInstance().onEnableNFC()
     }
 
     override fun onPause() {
         super.onPause()
-        //结束NFC扫描
+        //结束NFC扫描，必须在onPause生命周期方法中调用
         CgmCareManage.getInstance().onDisableNFC()
     }
 
