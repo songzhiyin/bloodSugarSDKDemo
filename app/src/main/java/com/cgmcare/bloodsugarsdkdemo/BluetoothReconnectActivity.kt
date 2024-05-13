@@ -30,17 +30,13 @@ class BluetoothReconnectActivity : BaseActivity() {
         tvMessage = findViewById(R.id.tvMessage)
         mContext = this
         //设置异常信息回调
-        CgmCareManage.getInstance()
-            .setDeviceFailureMessageListeners(deviceReadFailureMessageListener)
+        CgmCareManage.getInstance().addDeviceReadFailureMessageListener(deviceReadFailureMessageListener)
         //设置蓝牙扫描设备的回调，蓝牙设备扫描到就会回调没有排重，同一个设备回调的时间间隔是5秒
-        CgmCareManage.getInstance()
-            .setDeviceBluetoothScanAlwaysListener(deviceBluetoothScanAlwaysListener)
+        CgmCareManage.getInstance().addDeviceBluetoothScanAlwaysListener(deviceBluetoothScanAlwaysListener)
         //血糖接收数据的回调
-        CgmCareManage.getInstance()
-            .setDeviceBloodSugarMessageListeners(deviceBloodSugarMessageListener)
+        CgmCareManage.getInstance().addDeviceBloodSugarMessageListener(deviceBloodSugarMessageListener)
         //蓝牙连接状态的回调
-        CgmCareManage.getInstance()
-            .setDeviceBluetoothConnectListeners(deviceBluetoothConnectListener)
+        CgmCareManage.getInstance().addDeviceBluetoothConnectListener(deviceBluetoothConnectListener)
 
         findViewById<Button>(R.id.tvScan).setOnClickListener(View.OnClickListener {
             name = edtMessage.text.toString().trim { it <= ' ' }

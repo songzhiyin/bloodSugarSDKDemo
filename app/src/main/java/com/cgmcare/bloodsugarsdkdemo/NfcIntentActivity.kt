@@ -41,23 +41,23 @@ class NfcIntentActivity : BaseActivity() {
         CgmCareManage.getInstance().setNfcPhoneVibrate(true)
         //设置NFC扫描异常信息回调
         CgmCareManage.getInstance()
-            .setDeviceFailureMessageListeners(deviceReadFailureMessageListener)
+            .addDeviceReadFailureMessageListener(deviceReadFailureMessageListener)
         //设置瞬感探头设备和血糖数据的回调
         CgmCareManage.getInstance()
-            .setDeviceBloodSugarMessageListeners(deviceBloodSugarMessageListener)
+            .addDeviceBloodSugarMessageListener(deviceBloodSugarMessageListener)
 
     }
 
     override fun onResume() {
         super.onResume()
         //开启扫描，必须在onResume生命周期方法中调用
-        CgmCareManage.getInstance().onEnableNFC()
+        CgmCareManage.getInstance().onResumeNFC()
     }
 
     override fun onPause() {
         super.onPause()
         //结束扫描，必须在onPause生命周期方法中调用
-        CgmCareManage.getInstance().onDisableNFC()
+        CgmCareManage.getInstance().onPauseNFC()
     }
 
     override fun onNewIntent(intent: Intent?) {

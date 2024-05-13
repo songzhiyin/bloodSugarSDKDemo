@@ -38,12 +38,12 @@ class NfcActivationActivity : BaseActivity() {
         //设置NFC扫码手机震动
         CgmCareManage.getInstance().setNfcPhoneVibrate(true)
         //设置允许NFC扫描激活瞬感探头
-        CgmCareManage.getInstance().setAllowAbbottActivation(true)
+        CgmCareManage.getInstance().enableAbbottActivation()
         //检查是否允许探头激活
         CgmCareManage.getInstance().checkAllowAbbottActivation()
         //瞬感探头回调
         CgmCareManage.getInstance()
-            .setDeviceSensorActivateListeners(object : DeviceSensorActivateListener {
+            .addDeviceSensorActivateListener(object : DeviceSensorActivateListener {
                 override fun onActivateStatus(isActivated: Boolean) {
                     message.append("\n")
                     message.append("\n是否激活成功：$isActivated")
@@ -62,13 +62,13 @@ class NfcActivationActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         //开启扫描，必须在onResume生命周期方法中调用
-        CgmCareManage.getInstance().onEnableNFC()
+        CgmCareManage.getInstance().onResumeNFC()
     }
 
     override fun onPause() {
         super.onPause()
         //结束扫描，必须在onPause生命周期方法中调用
-        CgmCareManage.getInstance().onDisableNFC()
+        CgmCareManage.getInstance().onPauseNFC()
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -79,7 +79,7 @@ class NfcActivationActivity : BaseActivity() {
 
     override fun onDestroy() {
         //离开激活界面之前，需要将参数重置，否则会影响瞬感的读取
-        CgmCareManage.getInstance().setAllowAbbottActivation(false)
+        CgmCareManage.getInstance().disableAbbottActivation()
         super.onDestroy()
     }
 }

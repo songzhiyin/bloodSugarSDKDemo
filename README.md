@@ -2,76 +2,75 @@
 
 ### 集成步骤
 
+* 请在build.gradle中设置仓库的访问凭证
+
 ```groovy
 
-请在build.gradle中设置仓库的访问凭证。
-
 allprojects {
-  repositories {
-    maven {
-      url 'https://maven.aliyun.com/repository/public'
+    repositories {
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            credentials {
+                username '644743f5840f2501c4ff47d3'
+                password 'iYSfTLX3ivhB'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2369369-release-3RKhpV/'
+        }
+        maven {
+            credentials {
+                username '644743f5840f2501c4ff47d3'
+                password 'iYSfTLX3ivhB'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2369369-snapshot-xBNR34/'
+        }
     }
-    maven {
-      credentials {
-        username '644743f5840f2501c4ff47d3'
-        password 'iYSfTLX3ivhB'
-      }
-      url 'https://packages.aliyun.com/maven/repository/2369369-release-3RKhpV/'
-    }
-    maven {
-      credentials {
-        username '644743f5840f2501c4ff47d3'
-        password 'iYSfTLX3ivhB'
-      }
-      url 'https://packages.aliyun.com/maven/repository/2369369-snapshot-xBNR34/'
-    }
-  }
 }
-
-在你的build.gradle文件中加入你要引用的文件信息。
-
-dependencies {
-  implementation 'com.cgmcare.sdk:bloodSugar:2.0.9'
-}
-
 
 ```
+
+* 在你的build.gradle文件中加入你要引用的文件信息。
+
+```groovy
+
+dependencies {
+    implementation 'com.cgmcare.sdk:bloodSugar:2.1.0'
+}
+
+```
+
 ### 清单文档中需要添加的权限
 
 ```groovy
 
-    <!-- NFC扫描权限 -->
-    <uses-permission android:name="android.permission.NFC" />
-    <!-- ACCESS_COARSE_LOCATION、ACCESS_FINE_LOCATION这些权限允许您的应用程序访问设备的位置信息，用于蓝牙扫描和定位蓝牙设备。 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- 此权限允许您的应用程序连接到蓝牙设备以进行数据传输。 -->
-    <uses-permission
-        android:name="android.permission.BLUETOOTH"
-        android:maxSdkVersion="30" />
-    <!-- 此权限允许您的应用程序扫描周围的蓝牙设备、发现新设备和建立蓝牙连接等高级操作。 -->
-    <uses-permission
-        android:name="android.permission.BLUETOOTH_ADMIN"
-        android:maxSdkVersion="30" />
-    <!-- 为了保护用户隐私，自 Android 10 起，应用程序需要请求此权限才能在后台继续使用位置信息。 -->
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <!-- 安卓12新增权限，蓝牙扫描周围设备的权限 -->
-    <uses-permission
-        android:name="android.permission.BLUETOOTH_SCAN"
-        android:usesPermissionFlags="neverForLocation" />
-    <!-- 安卓12新增权限，仅当应用使设备可供蓝牙设备发现时才需要。 -->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-    <!-- 安卓12新增权限，仅当应用与已配对的蓝牙设备通信时才需要 -->
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <!-- 网络请求权限 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 手机振动的权限 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
+< !--NFC扫描权限-- >
+        < uses - permission android: name = "android.permission.NFC" / >
+        < !--ACCESS_COARSE_LOCATION 、 ACCESS_FINE_LOCATION这些权限允许您的应用程序访问设备的位置信息 ， 用于蓝牙扫描和定位蓝牙设备 。 -- >
+        < uses - permission android: name = "android.permission.ACCESS_COARSE_LOCATION" / >
+        < uses - permission android: name = "android.permission.ACCESS_FINE_LOCATION" / >
+        < !--此权限允许您的应用程序连接到蓝牙设备以进行数据传输 。 -- >
+        < uses - permissionandroid : name = "android.permission.BLUETOOTH" android: maxSdkVersion = "30" / >
+        < !--此权限允许您的应用程序扫描周围的蓝牙设备 、 发现新设备和建立蓝牙连接等高级操作 。 -- >
+        < uses - permissionandroid : name = "android.permission.BLUETOOTH_ADMIN" android: maxSdkVersion = "30" / >
+        < !--为了保护用户隐私 ， 自 Android 10 起 ， 应用程序需要请求此权限才能在后台继续使用位置信息 。 -- >
+        < uses - permission android: name = "android.permission.ACCESS_BACKGROUND_LOCATION" / >
+        < !--安卓12新增权限 ， 蓝牙扫描周围设备的权限-- >
+        < uses - permissionandroid : name = "android.permission.BLUETOOTH_SCAN" android: usesPermissionFlags = "neverForLocation" / >
+        < !--安卓12新增权限 ， 仅当应用使设备可供蓝牙设备发现时才需要 。 -- >
+        < uses - permission android: name = "android.permission.BLUETOOTH_ADVERTISE" / >
+        < !--安卓12新增权限 ， 仅当应用与已配对的蓝牙设备通信时才需要-- >
+        < uses - permission android: name = "android.permission.BLUETOOTH_CONNECT" / >
+        < !--网络请求权限-- >
+        < uses - permission android: name = "android.permission.INTERNET" / >
+        < !--手机振动的权限-- >
+        < uses - permission android: name = "android.permission.VIBRATE" / >
 
 
 ```
 
 ### 需要动态申请的权限
+
 ```groovy
 
 安卓12以上的
@@ -83,8 +82,10 @@ android.permission.BLUETOOTH_ADVERTISE 方便其他设备发现
 android.permission.ACCESS_BACKGROUND_LOCATION 后台定位权限用于SDK后台扫描时使用
 
 安卓6以上
-android:name="android.permission.ACCESS_FINE_LOCATION 定位权限，蓝牙扫描需要使用到定位
-android:name="android.permission.ACCESS_COARSE_LOCATION 
+android:
+name = "android.permission.ACCESS_FINE_LOCATION 定位权限，蓝牙扫描需要使用到定位
+android:
+name = "android.permission.ACCESS_COARSE_LOCATION 
 
 
 ```
@@ -93,24 +94,24 @@ android:name="android.permission.ACCESS_COARSE_LOCATION
 
 ```groovy
 
-    //初始化SDK
-    CgmCareManage.getInstance().initApplication(getApplication());
-    //SDK鉴权认证
-    String secret = "糖动官网申请";
-    CgmCareManage.getInstance().authentication(secret, new DeviceAuthenticationListener() {
-            @Override
-            public void onSuccess() {
-                showToast("SDK鉴权成功");
-            }
+//初始化SDK
+CgmCareManage.getInstance().initApplication(getApplication());
+//SDK鉴权认证
+String secret = "糖动官网申请";
+CgmCareManage.getInstance().authentication(secret, new DeviceAuthenticationListener() {
+    @Override
+    public void onSuccess() {
+        showToast("SDK鉴权成功");
+    }
 
-            @Override
-            public void onFail(String s) {
-                showToast("SDK鉴权失败：" + s);
-            }
-    });
-    
-    
- ```
+    @Override
+    public void onFail(String s) {
+        showToast("SDK鉴权失败：" + s);
+    }
+});
+
+
+```
 
 ### NFC扫描(NFC读取瞬感探头数据、NFC激活瞬感探头)
 
@@ -118,52 +119,53 @@ android:name="android.permission.ACCESS_COARSE_LOCATION
 
 ```groovy
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //设置NFC扫描模式  NFCReadType.onCardReader 读卡器NFC扫描模式
-        CgmCareManage.getInstance().initNFC(this, NFCReadType.onCardReader);
-        //设置NFC扫码手机震动
-        CgmCareManage.getInstance().setNfcPhoneVibrate(true);
-        //设置NFC扫描异常信息回调
-        CgmCareManage.getInstance().setDeviceFailureMessageListeners(deviceReadFailureMessageListener);
-        //设置瞬感探头设备和血糖数据的回调
-        CgmCareManage.getInstance().setDeviceBloodSugarMessageListeners(deviceBloodSugarMessageListener);
-    }
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    //设置NFC扫描模式  NFCReadType.onCardReader 读卡器NFC扫描模式，该方法必须在onCreate方法中执行
+    CgmCareManage.getInstance().initNFC(this, NFCReadType.onCardReader);
+    //设置NFC扫码手机震动
+    CgmCareManage.getInstance().setNfcPhoneVibrate(true);
+    //设置NFC读取数据的异常信息回调
+    CgmCareManage.getInstance().addDeviceReadFailureMessageListener(deviceReadFailureMessageListener);
+    //设置瞬感探头设备和血糖数据的回调
+    CgmCareManage.getInstance().addDeviceBloodSugarMessageListener(deviceBloodSugarMessageListener);
+   
+}
 
+@Override
+protected void onResume() {
+    message.delete(0, message.length());
+    //恢复NFC扫描监听，该方法必须在onResume生命周期方法中执行
+    CgmCareManage.getInstance().onResumeNFC();
+    super.onResume();
+}
+
+@Override
+protected void onPause() {
+    //取消NFC扫描监听，该方法必须onPause生命周期方法中执行
+    CgmCareManage.getInstance().onPauseNFC();
+    super.onPause();
+}
+/**
+ * 读取数据的异常信息回调
+ */
+private DeviceReadFailureMessageListener deviceReadFailureMessageListener = new DeviceReadFailureMessageListener() {
     @Override
-    protected void onResume() {
-        message.delete(0, message.length());
-        //开启NFC扫描监听，必须在onResume生命周期方法中调用
-        CgmCareManage.getInstance().onEnableNFC();
-        super.onResume();
+    public void onNotifyFailure(String msg, FailureType type) {
+
     }
-    
+};
+
+/**
+ * 血糖和设备信息的回调接口
+ */
+private DeviceBloodSugarMessageListener deviceBloodSugarMessageListener = new DeviceBloodSugarMessageListener() {
     @Override
-    protected void onPause() {
-        //取消NFC扫描监听，必须在onPause生命周期方法中调用
-        CgmCareManage.getInstance().onDisableNFC();
-        super.onPause();
+    public void onUpdateDeviceMessage(DeviceEntity deviceEntity) {
+
     }
-    /**
-     * 读取数据的异常信息回调
-     */
-    private DeviceReadFailureMessageListener deviceReadFailureMessageListener = new DeviceReadFailureMessageListener() {
-        @Override
-        public void onNotifyFailure(String msg, FailureType type) {
-           
-        }
-    };
-    
-    /**
-     * 血糖和设备信息的回调接口
-     */
-    private DeviceBloodSugarMessageListener deviceBloodSugarMessageListener = new DeviceBloodSugarMessageListener() {
-        @Override
-        public void onUpdateDeviceMessage(DeviceEntity deviceEntity) {
-            
-        }
-    };
+};
 
 ```
 
@@ -172,74 +174,74 @@ android:name="android.permission.ACCESS_COARSE_LOCATION
 ```groovy
 
 
-    private PendingIntent mPendingIntent;
-    protected NfcAdapter nfcAdapter;
+private PendingIntent mPendingIntent;
+protected NfcAdapter nfcAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            mPendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE);
-        } else {
-            mPendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        }
-        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        //设置NFC扫描模式  NFCReadType.onIntent 前台调度模式
-        CgmCareManage.getInstance().initNFC(this, NFCReadType.onIntent);
-        CgmCareManage.getInstance().setPendingIntent(mPendingIntent);
-        CgmCareManage.getInstance().setNfcAdapter(nfcAdapter);
-        //设置NFC扫码手机震动
-        CgmCareManage.getInstance().setNfcPhoneVibrate(true);
-        //设置NFC扫描异常信息回调
-        CgmCareManage.getInstance().setDeviceFailureMessageListeners(deviceReadFailureMessageListener);
-        //设置瞬感探头设备和血糖数据的回调
-        CgmCareManage.getInstance().setDeviceBloodSugarMessageListeners(deviceBloodSugarMessageListener);
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    Intent intent = new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+        mPendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE);
+    } else {
+        mPendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
+    nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+    //设置NFC扫描模式  NFCReadType.onIntent 前台调度模式
+    CgmCareManage.getInstance().initNFC(this, NFCReadType.onIntent);
+    CgmCareManage.getInstance().setPendingIntent(mPendingIntent);
+    CgmCareManage.getInstance().setNfcAdapter(nfcAdapter);
+    //设置NFC扫码手机震动
+    CgmCareManage.getInstance().setNfcPhoneVibrate(true);
+    //设置NFC扫描异常信息回调
+    CgmCareManage.getInstance().addDeviceReadFailureMessageListener(deviceReadFailureMessageListener);
+    //设置瞬感探头设备和血糖数据的回调
+    CgmCareManage.getInstance().addDeviceBloodSugarMessageListener(deviceBloodSugarMessageListener);
+}
 
-   
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //开启扫描，必须在onResume生命周期方法中调用
-        CgmCareManage.getInstance().onEnableNFC();
-    }
-    
-    
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //结束扫描，必须在onPause生命周期方法中调用
-        CgmCareManage.getInstance().onDisableNFC();
-    }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        //前台调度模式必须方法，必须在必须在onNewIntent方法中调用
-        CgmCareManage.getInstance().nfcToOnNewIntent(intent);
-    }
+@Override
+protected void onResume() {
+    super.onResume();
+    //恢复NFC扫描监听，该方法必须在onResume生命周期方法中执行
+    CgmCareManage.getInstance().onResumeNFC();
+}
 
-    /**
-     * 读取数据的异常信息回调
-     */
-    private DeviceReadFailureMessageListener deviceReadFailureMessageListener = new DeviceReadFailureMessageListener() {
-        @Override
-        public void onNotifyFailure(String msg, FailureType type) {
-           
-        }
-    };
-    
-    
-    /**
-     * 血糖和设备信息的回调接口
-     */
-    private DeviceBloodSugarMessageListener deviceBloodSugarMessageListener = new DeviceBloodSugarMessageListener() {
-        @Override
-        public void onUpdateDeviceMessage(DeviceEntity deviceEntity) {
-            
-        }
-    };
+
+@Override
+protected void onPause() {
+    super.onPause();
+    //取消NFC扫描监听，该方法必须在onPause生命周期方法中执行
+    CgmCareManage.getInstance().onPauseNFC();
+}
+
+@Override
+protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    //前台调度模式必须方法
+    CgmCareManage.getInstance().nfcToOnNewIntent(intent);
+}
+
+/**
+ * 读取数据的异常信息回调
+ */
+private DeviceReadFailureMessageListener deviceReadFailureMessageListener = new DeviceReadFailureMessageListener() {
+    @Override
+    public void onNotifyFailure(String msg, FailureType type) {
+
+    }
+};
+
+
+/**
+ * 血糖和设备信息的回调接口
+ */
+private DeviceBloodSugarMessageListener deviceBloodSugarMessageListener = new DeviceBloodSugarMessageListener() {
+    @Override
+    public void onUpdateDeviceMessage(DeviceEntity deviceEntity) {
+
+    }
+};
 
 ```
 
@@ -247,195 +249,207 @@ android:name="android.permission.ACCESS_COARSE_LOCATION
 
 ```groovy
 
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    CgmCareManage.getInstance().addDeviceReadFailureMessageListener(deviceReadFailureMessageListener);
+    CgmCareManage.getInstance().addDeviceBloodSugarMessageListener(deviceBloodSugarMessageListener);
+}
+
+private void doReadNFC(Tag tag) {
+    //SDK直接读取tag标签
+    CgmCareManage.getInstance().nfcReadTag(tag);
+}
+
+/**
+ * 读取数据的异常信息回调
+ */
+private DeviceReadFailureMessageListener deviceReadFailureMessageListener = new DeviceReadFailureMessageListener() {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        CgmCareManage.getInstance().setDeviceFailureMessageListeners(deviceReadFailureMessageListener);
-        CgmCareManage.getInstance().setDeviceBloodSugarMessageListeners(deviceBloodSugarMessageListener);
-    }
+    public void onNotifyFailure(String msg, FailureType type) {
 
-    private void doReadNFC(Tag tag) {
-        //SDK直接读取tag标签
-        CgmCareManage.getInstance().nfcReadTag(tag);
     }
+};
 
-    /**
-     * 读取数据的异常信息回调
-     */
-    private DeviceReadFailureMessageListener deviceReadFailureMessageListener = new DeviceReadFailureMessageListener() {
-        @Override
-        public void onNotifyFailure(String msg, FailureType type) {
-           
-        }
-    };
-    
-    
-    /**
-     * 血糖和设备信息的回调接口
-     */
-    private DeviceBloodSugarMessageListener deviceBloodSugarMessageListener = new DeviceBloodSugarMessageListener() {
-        @Override
-        public void onUpdateDeviceMessage(DeviceEntity deviceEntity) {
-            
-        }
-    };
+
+/**
+ * 血糖和设备信息的回调接口
+ */
+private DeviceBloodSugarMessageListener deviceBloodSugarMessageListener = new DeviceBloodSugarMessageListener() {
+    @Override
+    public void onUpdateDeviceMessage(DeviceEntity deviceEntity) {
+
+    }
+};
 
 ```
 
 ### 激活瞬感探头
 
 ```groovy
-    
-    /**
-    * 设置NFC扫描执行激活探头的方法
-    * 
-    * 注意： 当NFC读取瞬感探头数据时该参数必须设置为false，否则会报错！！！
-    */
-    CgmCareManage.getInstance().setAbbottActivation(true);
+
+//开启NFC激活功能
+CgmCareManage.getInstance().enableAbbottActivation();
+//禁止NFC激活功能
+CgmCareManage.getInstance().disableAbbottActivation();
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    initNFC();
+    //开启NFC激活功能
+    CgmCareManage.getInstance().enableAbbottActivation();
+    //激活瞬感探头的回调
+    CgmCareManage.getInstance().addDeviceSensorActivateListeners(deviceSensorActivateListener);
+}
+/**
+ * 瞬感探头激活的回调
+ */
+private DeviceSensorActivateListener deviceSensorActivateListener = new DeviceSensorActivateListener() {
+    @Override
+    public void onActivateStatus(boolean isActivated) {
+        message.append("\n" + "探头激活结果：" + isActivated);
+        tvMessage.setText(message.toString());
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initNFC();
-        /**
-         * 设置NFC扫描执行激活探头的方法
-         *
-         * 注意： 当NFC读取瞬感探头数据时该参数必须设置为false，否则会报错！！！
-         */
-        CgmCareManage.getInstance().setAllowAbbottActivation(true);
-        //激活瞬感探头的回调
-        CgmCareManage.getInstance().setDeviceSensorActivateListeners(deviceSensorActivateListener);
+    public void onFailure(String msg) {
+        message.append("\n" + "异常信息：" + msg);
+        tvMessage.setText(message.toString());
     }
-    /**
-     * 瞬感探头激活的回调
-     */
-    private DeviceSensorActivateListener deviceSensorActivateListener = new DeviceSensorActivateListener() {
-        @Override
-        public void onActivateStatus(boolean isActivated) {
-            message.append("\n" + "探头激活结果：" + isActivated);
-            tvMessage.setText(message.toString());
-        }
+};
 
-        @Override
-        public void onFailure(String msg) {
-            message.append("\n" + "异常信息：" + msg);
-            tvMessage.setText(message.toString());
-        }
-    };
-   
 ```
 
 ### 蓝牙连接
 
 * 1、基本回调方法
+
 ```groovy
 
-        //设置异常信息回调
-        CgmCareManage.getInstance().setDeviceFailureMessageListeners(deviceReadFailureMessageListener);
-        //设置蓝牙扫描设备的回调，蓝牙设备扫描到就会回调没有排重，同一个设备回调的时间间隔是5秒
-        CgmCareManage.getInstance().setDeviceBluetoothScanAlwaysListener(deviceBluetoothScanAlwaysListener);
-        //血糖接收数据的回调
-        CgmCareManage.getInstance().setDeviceBloodSugarMessageListeners(deviceBloodSugarMessageListener);
-        //蓝牙连接状态的回调
-        CgmCareManage.getInstance().setDeviceBluetoothConnectListeners(deviceBluetoothConnectListener);
-        
+//设备读取数据的异常信息回调
+CgmCareManage.getInstance().addDeviceReadFailureMessageListener(deviceReadFailureMessageListener);
+CgmCareManage.getInstance().removeDeviceReadFailureMessageListener(deviceReadFailureMessageListener);
+CgmCareManage.getInstance().removeDeviceReadFailureMessageListenerAll();
+
+//设置蓝牙扫描设备的回调，蓝牙设备扫描到就会回调没有排重，同一个设备回调的时间间隔是5秒
+CgmCareManage.getInstance().addDeviceBluetoothScanAlwaysListener(deviceBluetoothScanAlwaysListener);
+CgmCareManage.getInstance().removeDeviceBluetoothScanAlwaysListener(deviceBluetoothScanAlwaysListener);
+CgmCareManage.getInstance().removeDeviceBluetoothScanAlwaysListenerAll();
+
+//血糖接收数据的回调
+CgmCareManage.getInstance().addDeviceBloodSugarMessageListener(deviceBloodSugarMessageListener);
+CgmCareManage.getInstance().removeDeviceBloodSugarMessageListener(deviceBloodSugarMessageListener);
+CgmCareManage.getInstance().removeDeviceBloodSugarMessageListenerAll();
+
+//蓝牙连接状态的回调
+CgmCareManage.getInstance().addDeviceBluetoothConnectListener(deviceBluetoothConnectListener);
+CgmCareManage.getInstance().removeDeviceBluetoothConnectListener(deviceBluetoothConnectListener);
+CgmCareManage.getInstance().removeDeviceBluetoothConnectListenerAll();
+
+//设置NFC瞬感探头激活的回调
+CgmCareManage.getInstance().addDeviceSensorActivateListener(deviceSensorActivateListener);
+CgmCareManage.getInstance().removeDeviceSensorActivateListener(deviceSensorActivateListener);
+CgmCareManage.getInstance().removeDeviceSensorActivateListenerAll();
+
+
 
 ```
+
 * 2、蓝牙扫描，扫描到的蓝牙在deviceBluetoothScanListener回调方法中返回
 
 ```groovy
 
-     /**
-     * 蓝牙扫描搜索糖动设备 (该方法一直扫描不会自动停止，后台扫描需要注意权限的申请)
-     */
-    private void scanDevice() {
-        //判断蓝牙权限和定位权限是否动态授权
-        if (!XXPermissions.isGranted(mContext, Permission.BLUETOOTH_SCAN,
-                Permission.BLUETOOTH_CONNECT,
-                Permission.BLUETOOTH_ADVERTISE)) {
-            XXPermissions.with(mContext)
-                    .permission(Permission.BLUETOOTH_SCAN)
-                    .permission(Permission.BLUETOOTH_CONNECT)
-                    .permission(Permission.BLUETOOTH_ADVERTISE)
-                    .request(new OnPermissionCallback() {
-                        @Override
-                        public void onGranted(@NonNull List<String> permissions, boolean allGranted) {
-                            if (allGranted) {
-                                //开启糖动扫描
-                                CgmCareManage.getInstance().scanBloodSugarBluetoothDeviceScanAlways();
-                            }
+/**
+ * 蓝牙扫描搜索糖动设备 (该方法一直扫描不会自动停止，后台扫描需要注意权限的申请)
+ */
+private void scanDevice() {
+    //判断蓝牙权限和定位权限是否动态授权
+    if (!XXPermissions.isGranted(mContext, Permission.BLUETOOTH_SCAN,
+            Permission.BLUETOOTH_CONNECT,
+            Permission.BLUETOOTH_ADVERTISE)) {
+        XXPermissions.with(mContext)
+                .permission(Permission.BLUETOOTH_SCAN)
+                .permission(Permission.BLUETOOTH_CONNECT)
+                .permission(Permission.BLUETOOTH_ADVERTISE)
+                .request(new OnPermissionCallback() {
+                    @Override
+                    public void onGranted(@NonNull List<String> permissions, boolean allGranted) {
+                        if (allGranted) {
+                            //开启糖动扫描
+                            CgmCareManage.getInstance().scanBloodSugarBluetoothDeviceScanAlways();
                         }
-                    });
-        } else {
-            //开启糖动扫描
-            CgmCareManage.getInstance().scanBloodSugarBluetoothDeviceScanAlways();
-        }
-
+                    }
+                });
+    } else {
+        //开启糖动扫描
+        CgmCareManage.getInstance().scanBloodSugarBluetoothDeviceScanAlways();
     }
 
+}
 
-    /**
-     * 设备持续扫描的回调
-     */
-    private DeviceBluetoothScanAlwaysListener deviceBluetoothScanAlwaysListener = new DeviceBluetoothScanAlwaysListener() {
-        @Override
-        public void onSuccess(BluetoothDevice device) {
-            String deviceName = device.getName();
-            if (!TextUtils.isEmpty(deviceName) && deviceName.equals(name)) {
-                //能扫描到则证明该设备已经断联了，直接连接就行
-                CgmCareManage.getInstance().connectBloodSugarBluetoothDevice(deviceName, device.getAddress());
-            }
+
+/**
+ * 设备持续扫描的回调
+ */
+private DeviceBluetoothScanAlwaysListener deviceBluetoothScanAlwaysListener = new DeviceBluetoothScanAlwaysListener() {
+    @Override
+    public void onSuccess(BluetoothDevice device) {
+        String deviceName = device.getName();
+        if (!TextUtils.isEmpty(deviceName) && deviceName.equals(name)) {
+            //能扫描到则证明该设备已经断联了，直接连接就行
+            CgmCareManage.getInstance().connectBloodSugarBluetoothDevice(deviceName, device.getAddress());
         }
-    };
-    
-    
-   //关闭蓝牙扫描
-   CgmCareManage.getInstance().stopBloodSugarBluetoothDeviceScan();
-   //关闭蓝牙连接
-   CgmCareManage.getInstance().dismissBloodSugarBluetoothDevice();
+    }
+};
+
+
+//关闭蓝牙扫描
+CgmCareManage.getInstance().stopBloodSugarBluetoothDeviceScan();
+//关闭蓝牙连接
+CgmCareManage.getInstance().dismissBloodSugarBluetoothDevice();
 
 
 ```
-
 
 * 3、蓝牙连接，并且自动读取瞬感设备信息和血糖数据
 
 ```groovy
 
-    //连接蓝牙设备(蓝牙不会自动连接，断联之后会有状态回调，需要APP自己处理重连)
-    CgmCareManage.getInstance().connectBloodSugarBluetoothDevice(deviceName, device.getAddress());
+//连接蓝牙设备(蓝牙不会自动连接，断联之后会有状态回调，需要APP自己处理重连)
+CgmCareManage.getInstance().connectBloodSugarBluetoothDevice(deviceName, device.getAddress());
 
-    /**
-     * 血糖数据获取的回调
-     */
-    private DeviceBloodSugarMessageListener deviceBloodSugarMessageListener = new DeviceBloodSugarMessageListener() {
-        @Override
-        public void onUpdateDeviceMessage(DeviceEntity deviceEntity) {
-            message.append("\n" + "设备信息：" + deviceEntity.getPrint());
+/**
+ * 血糖数据获取的回调
+ */
+private DeviceBloodSugarMessageListener deviceBloodSugarMessageListener = new DeviceBloodSugarMessageListener() {
+    @Override
+    public void onUpdateDeviceMessage(DeviceEntity deviceEntity) {
+        message.append("\n" + "设备信息：" + deviceEntity.getPrint());
 
-        }
-    };
+    }
+};
 
-    //断开蓝牙连接
-    CgmCareManage.getInstance().dismissBloodSugarBluetoothDevice();
+//断开蓝牙连接
+CgmCareManage.getInstance().dismissBloodSugarBluetoothDevice();
 
-    //蓝牙连接状态的回调
-    private DeviceBluetoothConnectListener deviceBluetoothConnectListener = new DeviceBluetoothConnectListener() {
-        @Override
-        public void onConnectStatus(boolean connected) {
-            message.append("\n" + "蓝牙是否连接正常：" + connected);
-            tvMessage.setText(message);
-        }
-    };
+//蓝牙连接状态的回调
+private DeviceBluetoothConnectListener deviceBluetoothConnectListener = new DeviceBluetoothConnectListener() {
+    @Override
+    public void onConnectStatus(boolean connected) {
+        message.append("\n" + "蓝牙是否连接正常：" + connected);
+        tvMessage.setText(message);
+    }
+};
 
-    //读取数据的异常信息回调
-    private DeviceReadFailureMessageListener deviceReadFailureMessageListener = new DeviceReadFailureMessageListener() {
-        @Override
-        public void onNotifyFailure(String msg, FailureType failureType) {
-            message.append("\n" + "异常信息：" + msg);
-            tvMessage.setText(message);
-        }
-    };
+//读取数据的异常信息回调
+private DeviceReadFailureMessageListener deviceReadFailureMessageListener = new DeviceReadFailureMessageListener() {
+    @Override
+    public void onNotifyFailure(String msg, FailureType failureType) {
+        message.append("\n" + "异常信息：" + msg);
+        tvMessage.setText(message);
+    }
+};
 
 ```
 
@@ -445,197 +459,197 @@ android:name="android.permission.ACCESS_COARSE_LOCATION
 
 ```groovy
 
-     /**
-     * 初始化SDK
-     */
-    public void initApplication(Application application) {
-        
-    }
-    /**
-     * SDK鉴权认证(每次启动APP都需要进行鉴权认证)
-     */
-    public void authentication(String secret, DeviceAuthenticationListener deviceAuthenticationListener) {
+/**
+ * 初始化SDK
+ */
+public void initApplication(Application application) 
+/**
+ * SDK鉴权认证(每次启动APP都需要进行鉴权认证)
+ */
+public void authentication(String secret, DeviceAuthenticationListener deviceAuthenticationListener)
 
-    }
+/**
+ * SDK是否鉴权
+ */
+public boolean isAuthentication() 
+
+/**
+ * 设置是否打印debug日志
+ */
+public void setPrintDebugLog(boolean print)
+
+
+/**
+* 添加设备蓝牙扫描的回调
+*/
+public void addDeviceBluetoothScanAlwaysListener(DeviceBluetoothScanAlwaysListener listener)
+
+/**
+* 删除设备蓝牙扫描的回调
+*/
+public void removeDeviceBluetoothScanAlwaysListener(DeviceBluetoothScanAlwaysListener listener) 
+/**
+* 删除设备蓝牙扫描的回调
+*/
+public void removeDeviceBluetoothScanAlwaysListenerAll()
+
+/**
+ * 读取数据的异常信息回调
+ */
+public void setDeviceFailureMessageListeners(DeviceReadFailureMessageListener listener) 
+
+/**
+ * 瞬感设备信息和血糖数据
+ */
+public void setDeviceBloodSugarMessageListeners(DeviceBloodSugarMessageListener listener) 
+
+/**
+* 添加糖动发射器蓝牙连接状态的回调
+*/
+public void addDeviceBluetoothConnectListener(DeviceBluetoothConnectListener listener)
+
+/**
+* 删除糖动发射器蓝牙连接状态的回调
+*/
+public void removeDeviceBluetoothConnectListener(DeviceBluetoothConnectListener listener)
+
+/**
+* 删除糖动发射器蓝牙连接状态的回调
+*/
+public void removeDeviceBluetoothConnectListenerAll()
     
-    /**
-     * SDK是否鉴权
-     */
-    public boolean isAuthentication() {
-        return AuthenticationUtil.getInstance().isAuthentication();
-    }
 
-    /**
-     * 设置是否打印debug日志
-     */
-    public void setPrintDebugLog(boolean print) {
-
-    }
-
-
-    /**
-     * 蓝牙设备持续扫描的回调
-     */
-    public void setDeviceBluetoothScanAlwaysListener(DeviceBluetoothScanAlwaysListener listener) {
-
-    }
-
-    /**
-     * 读取数据的异常信息回调
-     */
-    public void setDeviceFailureMessageListeners(DeviceReadFailureMessageListener listener) {
-
-    }
-
-    /**
-     * 瞬感设备信息和血糖数据
-     */
-    public void setDeviceBloodSugarMessageListeners(DeviceBloodSugarMessageListener listener) {
-       
-    }
-
-    /**
-     * 糖动发射器蓝牙连接状态的回调
-     */
-    public void setDeviceBluetoothConnectListeners(DeviceBluetoothConnectListener listener) {
-        
-    }
-
-    /**
-     * 瞬感探头激活的回调
-     */
-    public void setDeviceSensorActivateListeners(DeviceSensorActivateListener listener) {
-        
-    }
-
-    /**
-     * 检查是否允许探头激活
-     */
-    public boolean checkAllowAbbottActivation() {
-       
-    }
-
-    /**
-     * 设置是否允许瞬感探头激活
-     */
-    public void setAllowAbbottActivation(boolean abbottActivation) {
-       
-    }
-
-    /**
-     * 糖动发射器扫描服务UUID
-     */
-    public String getDeviceScanUUID() {
-        
-    }
-
-    /**
-     * 蓝牙持续扫描(扫描的蓝牙设备就会返回，没做排重处理)
-     */
-    public void scanBloodSugarBluetoothDeviceScanAlways() {
-        
-    }
-
-    /**
-     * 蓝牙设备扫描搜索的回调(扫描的设备做了排重，每个设备最多扫描返回一次，多次扫描到也无效)
-     */
-    public void scanBloodSugarBluetoothDeviceScanSearch(DeviceBluetoothScanSearchListener listener) {
-       
-    }
+/**
+ * 添加瞬感探头激活的回调
+ */
+public void addDeviceSensorActivateListener(DeviceSensorActivateListener listener)
+/**
+ * 删除瞬感探头激活的回调
+ */
+public void removeDeviceSensorActivateListener(DeviceSensorActivateListener listener)
+/**
+ * 清除所有的瞬感探头激活的回调
+ */
+public void removeDeviceSensorActivateListenerAll()
 
 
-    /**
-     * 蓝牙停止扫描
-     */
-    public void stopBloodSugarBluetoothDeviceScan() {
-       
-    }
 
-    /**
-     * 连接蓝牙设备
-     */
-    public void connectBloodSugarBluetoothDevice(String deviceName, String deviceAddress) {
+/**
+ * 开启NFC激活功能
+ */
+public void enableAbbottActivation()
 
-    }
-
-    /**
-     * 设置设备连接的时间间隔(秒)
-     */
-    public void setBluetoothConnectTimeInterval(int interval) {
-
-    }
-
-    /**
-     * 检验设备是否连接着
-     */
-    public boolean checkDeviceConnect(String deviceAddress) {
-
-    }
-
-    /**
-     * 断开蓝牙设备
-     */
-    public void dismissBloodSugarBluetoothDevice() {
-
-    }
+/**
+ * 禁止NFC激活功能
+ */
+public void disableAbbottActivation()
+/**
+ * 是否允许探头激活
+ */
+public boolean checkAllowAbbottActivation()
 
 
-    /**
-     * NFC标签读取
-     */
-    public void nfcReadTag(Tag tag) {
 
-    }
+/**
+ * 开启NFC读取数据的功能
+ */
+public void enableAbbottNFCReadData()
 
-    /**
-     * NFC扫描完毕是否振动
-     */
-    public void setNfcPhoneVibrate(boolean vibrate) {
+/**
+ * 禁止NFC读取数据的功能
+ */
+public void disableAbbottNFCReadData()
 
-    }
+/**
+ * 是否允许NFC读取数据
+ */
+public void checkAllowAbbottNFCReadData()
 
-    /**
-     * 初始化NFC扫描
-     *
-     * @param activity
-     * @param type     NFC扫描模式
-     *                 NFCReadType.onCardReader 读卡器模式
-     *                 NFCReadType.onIntent 前台调度模式
-     */
-    public void initNFC(final AppCompatActivity activity, NFCReadType type) {
 
-    }
 
-    /**
-     * NFC前台调度模式必要方法
-     * 重写Activity的OnNewIntent方法，在OnNewIntent方法调用nfcToOnNewIntent方法
-     * 如果不使用前台调度模式，该方法可以不写
-     */
-    public void nfcToOnNewIntent(Intent intent) {
 
-    }
+/**
+ * 糖动发射器扫描服务UUID
+ */
+public String getDeviceScanUUID()
 
-    /**
-     * 设置NFC扫描的监听(建议在生命周期OnResume方法调用)
-     */
-    public void onEnableNFC() {
+/**
+ * 蓝牙持续扫描(扫描的蓝牙设备就会返回，没做排重处理)
+ */
+public void scanBloodSugarBluetoothDeviceScanAlways()
 
-    }
+/**
+ * 蓝牙设备扫描搜索的回调(扫描的设备做了排重，每个设备最多扫描返回一次，多次扫描到也无效)
+ */
+public void scanBloodSugarBluetoothDeviceScanSearch(DeviceBluetoothScanSearchListener listener)
 
-    /**
-     * 取消NFC扫描的监听(建议在生命周期OnPause方法调用)
-     */
-    public void onDisableNFC() {
 
-    }
+/**
+ * 蓝牙停止扫描
+ */
+public void stopBloodSugarBluetoothDeviceScan()
 
-    public void setPendingIntent(PendingIntent pendingIntent) {
+/**
+ * 连接蓝牙设备
+ */
+public void connectBloodSugarBluetoothDevice(String deviceName, String deviceAddress)
 
-    }
+/**
+ * 设置设备连接的时间间隔(秒)
+ */
+public void setBluetoothConnectTimeInterval(int interval)
 
-    public void setNfcAdapter(NfcAdapter nfcAdapter) {
+/**
+ * 检验设备是否连接着
+ */
+public boolean checkDeviceConnect(String deviceAddress)
 
-    }
+/**
+ * 断开蓝牙设备
+ */
+public void dismissBloodSugarBluetoothDevice()
+
+
+/**
+ * NFC标签读取
+ */
+public void nfcReadTag(Tag tag) 
+
+/**
+ * NFC扫描完毕是否振动
+ */
+public void setNfcPhoneVibrate(boolean vibrate)
+
+/**
+ * 初始化NFC扫描
+ *
+ * @param activity
+ * @param type NFC扫描模式
+ *                 NFCReadType.onCardReader 读卡器模式
+ *                 NFCReadType.onIntent 前台调度模式
+ */
+public void initNFC(final AppCompatActivity activity, NFCReadType type) 
+
+/**
+ * NFC前台调度模式必要方法
+ * 重写Activity的OnNewIntent方法，在OnNewIntent方法调用nfcToOnNewIntent方法
+ * 如果不使用前台调度模式，该方法可以不写
+ */
+public void nfcToOnNewIntent(Intent intent)
+
+/**
+ * 恢复NFC的监听(建议在生命周期OnResume方法调用)
+ */
+public void onResumeNFC()
+
+/**
+ * 取消NFC扫描的监听(建议在生命周期OnPause方法调用)
+ */
+public void onPauseNFC()
+
+public void setPendingIntent(PendingIntent pendingIntent)
+
+public void setNfcAdapter(NfcAdapter nfcAdapter)
 
 
 ```
@@ -751,7 +765,7 @@ public class BloodSugarEntity implements Serializable {
  * 蓝牙连接状态的更新
  */
 public interface DeviceBluetoothConnectListener {
-     void onConnectStatus(boolean connected);
+    void onConnectStatus(boolean connected);
 }
 
 ```
@@ -772,7 +786,6 @@ public interface DeviceAuthenticationListener {
 
 
 ```
-
 
 * DeviceBluetoothScanListener 蓝牙设备扫描的回调
 
