@@ -535,7 +535,8 @@ public void removeDeviceSensorActivateListenerAll()
 
 
 /**
- * 开启NFC激活功能
+ * 开启NFC激活功能(默认是关闭的)
+ * 注：开启NFC激活功能，NFC读取血糖数据功能就无法使用，请及时关闭激活功能
  */
 public void enableAbbottActivation()
 
@@ -551,7 +552,7 @@ public boolean checkAllowAbbottActivation()
 
 
 /**
- * 开启NFC读取数据的功能
+ * 开启NFC读取数据的功能(默认是开启的)
  */
 public void enableAbbottNFCReadData()
 
