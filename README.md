@@ -35,7 +35,7 @@ allprojects {
 ```groovy
 
 dependencies {
-    implementation 'com.cgmcare.sdk:bloodSugar:2.1.0'
+    implementation 'com.cgmcare.sdk:bloodSugar:2.1.1'
 }
 
 ```
@@ -397,7 +397,7 @@ private DeviceBluetoothScanAlwaysListener deviceBluetoothScanAlwaysListener = ne
     public void onSuccess(BluetoothDevice device) {
         String deviceName = device.getName();
         if (!TextUtils.isEmpty(deviceName) && deviceName.equals(name)) {
-            //能扫描到则证明该设备已经断联了，直接连接就行
+            //能扫描到则证明该设备已经断联了，直接连接就行，重复调用该方法需要间隔最少1秒
             CgmCareManage.getInstance().connectBloodSugarBluetoothDevice(deviceName, device.getAddress());
         }
     }
@@ -592,6 +592,7 @@ public void stopBloodSugarBluetoothDeviceScan()
 
 /**
  * 连接蓝牙设备
+ * 注意：最少间隔一秒调用该方法，否则该方法失效
  */
 public void connectBloodSugarBluetoothDevice(String deviceName, String deviceAddress)
 
